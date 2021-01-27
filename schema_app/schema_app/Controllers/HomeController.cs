@@ -13,6 +13,16 @@ namespace schema_app.Controllers
         {
             return View();
         }
- 
+
+        public ActionResult Vandaag()
+        {
+            return View();
+        }
+
+        public ActionResult Week()
+        {
+            return View();
+        }
+
     }
 }
