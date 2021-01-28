@@ -86,3 +86,6 @@ D:\programming_school\voedingsschema\schema_app\schema_app\bin\roslyn\System.Buf
 D:\programming_school\voedingsschema\schema_app\schema_app\bin\roslyn\System.Memory.dll
 D:\programming_school\voedingsschema\schema_app\schema_app\bin\roslyn\System.Numerics.Vectors.dll
 D:\programming_school\voedingsschema\schema_app\schema_app\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.Migrations.GerechtDb.initializeGerechtTable.resources
+D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.csproj.GenerateResource.cache
+D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.Migrations.ApplicationDbContext.initializeUserDatabase.resources

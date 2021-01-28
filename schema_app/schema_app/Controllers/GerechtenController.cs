@@ -27,12 +27,12 @@ namespace schema_app.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Gerecht maaltijd = db.Gerechten.Find(id);
-            if (maaltijd == null)
+            Gerecht gerecht = db.Gerechten.Find(id);
+            if (gerecht == null)
             {
                 return HttpNotFound();
             }
-            return View(maaltijd);
+            return View(gerecht);
         }
 
         // GET: Gerechten/Create
@@ -42,20 +42,20 @@ namespace schema_app.Controllers
         }
 
         // POST: Gerechten/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Naam")] Gerecht maaltijd)
+        public ActionResult Create([Bind(Include = "Id,Naam,Kcal,Suiker,Vet,Verzadigde_vetten,koolhydraten,eiwit")] Gerecht gerecht)
         {
             if (ModelState.IsValid)
             {
-                db.Gerechten.Add(maaltijd);
+                db.Gerechten.Add(gerecht);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(maaltijd);
+            return View(gerecht);
         }
 
         // GET: Gerechten/Edit/5
@@ -65,28 +65,28 @@ namespace schema_app.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Gerecht maaltijd = db.Gerechten.Find(id);
-            if (maaltijd == null)
+            Gerecht gerecht = db.Gerechten.Find(id);
+            if (gerecht == null)
             {
                 return HttpNotFound();
             }
-            return View(maaltijd);
+            return View(gerecht);
         }
 
         // POST: Gerechten/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Naam")] Gerecht maaltijd)
+        public ActionResult Edit([Bind(Include = "Id,Naam,Kcal,Suiker,Vet,Verzadigde_vetten,koolhydraten,eiwit")] Gerecht gerecht)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(maaltijd).State = EntityState.Modified;
+                db.Entry(gerecht).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(maaltijd);
+            return View(gerecht);
         }
 
         // GET: Gerechten/Delete/5
@@ -96,12 +96,12 @@ namespace schema_app.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Gerecht maaltijd = db.Gerechten.Find(id);
-            if (maaltijd == null)
+            Gerecht gerecht = db.Gerechten.Find(id);
+            if (gerecht == null)
             {
                 return HttpNotFound();
             }
-            return View(maaltijd);
+            return View(gerecht);
         }
 
         // POST: Gerechten/Delete/5
@@ -109,8 +109,8 @@ namespace schema_app.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Gerecht maaltijd = db.Gerechten.Find(id);
-            db.Gerechten.Remove(maaltijd);
+            Gerecht gerecht = db.Gerechten.Find(id);
+            db.Gerechten.Remove(gerecht);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

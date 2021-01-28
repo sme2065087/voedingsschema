@@ -14,6 +14,24 @@
         <th>
             @Html.DisplayNameFor(model => model.Naam)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kcal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Suiker)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Verzadigde_vetten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.koolhydraten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eiwit)
+        </th>
         <th></th>
     </tr>
 
@@ -21,6 +39,24 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kcal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suiker)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verzadigde_vetten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.koolhydraten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eiwit)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

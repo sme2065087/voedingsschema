@@ -10,6 +10,12 @@ namespace schema_app.Models
     {
         public int Id { get; set; }
         public string Naam { get; set; }
+        public int Kcal { get; set; }
+        public int Suiker { get; set; }
+        public int Vet { get; set; }
+        public int Verzadigde_vetten { get; set; }
+        public int koolhydraten { get; set; }
+        public int eiwit { get; set; }
         public Gerecht()
         {
 
