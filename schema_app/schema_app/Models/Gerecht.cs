@@ -16,6 +16,7 @@ namespace schema_app.Models
         public int Verzadigde_vetten { get; set; }
         public int koolhydraten { get; set; }
         public int eiwit { get; set; }
+        public ICollection<MaaltijdUser> MaaltijdUsers { get; set; }
         public Gerecht()
         {
 

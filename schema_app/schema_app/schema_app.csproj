@@ -89,6 +89,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,6 +173,17 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\MaaltijdUsersController.cs" />
+    <Compile Include="Migrations\UserDbContext\202101291929527_initialMigrate.cs" />
+    <Compile Include="Migrations\UserDbContext\202101291929527_initialMigrate.Designer.cs">
+      <DependentUpon>202101291929527_initialMigrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\UserDbContext\202101292114394_UpdateTijdNaam.cs" />
+    <Compile Include="Migrations\UserDbContext\202101292114394_UpdateTijdNaam.Designer.cs">
+      <DependentUpon>202101292114394_UpdateTijdNaam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\UserDbContext\Configuration.cs" />
+    <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GerechtenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -191,6 +204,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Gerecht.cs" />
+    <Compile Include="Models\MaaltijdUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -359,6 +373,11 @@
     <Content Include="Views\Gerechten\Details.cshtml" />
     <Content Include="Views\Gerechten\Edit.cshtml" />
     <Content Include="Views\Gerechten\Index.cshtml" />
+    <Content Include="Views\MaaltijdUsers\Create.cshtml" />
+    <Content Include="Views\MaaltijdUsers\Delete.cshtml" />
+    <Content Include="Views\MaaltijdUsers\Details.cshtml" />
+    <Content Include="Views\MaaltijdUsers\Edit.cshtml" />
+    <Content Include="Views\MaaltijdUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -380,6 +399,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\GerechtDb\202101281740222_initializeGerechtTable.resx">
       <DependentUpon>202101281740222_initializeGerechtTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\UserDbContext\202101291929527_initialMigrate.resx">
+      <DependentUpon>202101291929527_initialMigrate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\UserDbContext\202101292114394_UpdateTijdNaam.resx">
+      <DependentUpon>202101292114394_UpdateTijdNaam.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

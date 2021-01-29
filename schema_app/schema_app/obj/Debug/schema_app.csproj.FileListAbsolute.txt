@@ -89,3 +89,5 @@ D:\programming_school\voedingsschema\schema_app\schema_app\bin\roslyn\System.Run
 D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.Migrations.GerechtDb.initializeGerechtTable.resources
 D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.csproj.GenerateResource.cache
 D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.Migrations.ApplicationDbContext.initializeUserDatabase.resources
+D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.Migrations.UserDbContext.initialMigrate.resources
+D:\programming_school\voedingsschema\schema_app\schema_app\obj\Debug\schema_app.Migrations.UserDbContext.UpdateTijdNaam.resources
