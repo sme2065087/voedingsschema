@@ -4,14 +4,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace schema_app.Models
 {
     public class MaaltijdUser
     {
         public int Id { get; set; }
+
+
+        public string AspNetUserRefId { get; set; }
+
+        [ForeignKey("AspNetUserRefId")]
         public AspNetUser AspNetUser { get; set; }
+
         public DateTime? Eetmoment { get; set; }
+
+        public int GerechtRefId { get; set; }
+
+        [ForeignKey("GerechtRefId")]
         public Gerecht Gerecht { get; set; }
 
         public bool voldaan { get; set; }
@@ -27,5 +38,9 @@ namespace schema_app.Models
         public UserDbContext() : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<schema_app.Models.AspNetUser> AspNetUsers { get; set; }
+
+        public System.Data.Entity.DbSet<schema_app.Models.Gerecht> Gerechts { get; set; }
     }
 }

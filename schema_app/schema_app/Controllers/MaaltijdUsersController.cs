@@ -17,7 +17,8 @@ namespace schema_app.Controllers
         // GET: MaaltijdUsers
         public ActionResult Index()
         {
-            return View(db.MaaltijdUsers.ToList());
+            var maaltijdUsers = db.MaaltijdUsers.Include(m => m.AspNetUser).Include(m => m.Gerecht);
+            return View(maaltijdUsers.ToList());
         }
 
         // GET: MaaltijdUsers/Details/5
@@ -38,6 +39,8 @@ namespace schema_app.Controllers
         // GET: MaaltijdUsers/Create
         public ActionResult Create()
         {
+            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace schema_app.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Eetmoment,voldaan")] MaaltijdUser maaltijdUser)
+        public ActionResult Create([Bind(Include = "Id,AspNetUserRefId,Eetmoment,GerechtRefId,voldaan")] MaaltijdUser maaltijdUser)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace schema_app.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email", maaltijdUser.AspNetUserRefId);
+            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
 
@@ -70,6 +75,8 @@ namespace schema_app.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email", maaltijdUser.AspNetUserRefId);
+            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
 
@@ -78,7 +85,7 @@ namespace schema_app.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Eetmoment,voldaan")] MaaltijdUser maaltijdUser)
+        public ActionResult Edit([Bind(Include = "Id,AspNetUserRefId,Eetmoment,GerechtRefId,voldaan")] MaaltijdUser maaltijdUser)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace schema_app.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email", maaltijdUser.AspNetUserRefId);
+            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
 

@@ -13,6 +13,8 @@ namespace schema_app.Migrations.UserDbContext
             MigrationsDirectory = @"Migrations\UserDbContext";
         }
 
+
+
         protected override void Seed(schema_app.Models.UserDbContext context)
         {
             //  This method will be called after migrating to the latest version.

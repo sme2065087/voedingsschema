@@ -12,6 +12,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gerecht.Naam)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Eetmoment)
         </th>
         <th>
@@ -22,6 +28,12 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gerecht.Naam)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Eetmoment)
         </td>
