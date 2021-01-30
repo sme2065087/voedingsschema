@@ -27,7 +27,7 @@ namespace schema_app.Controllers
         public ActionResult Vandaag()
         {
            
-            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId);
+            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId).Include(p => p.Gerecht);
 
             return View(maaltijdUsers.ToList());
         }
