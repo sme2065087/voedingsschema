@@ -4,6 +4,7 @@
     ViewBag.Title = "Vandaag";
     }
 
+
     <h3>@DateTime.Now.ToString("dddd") @DateTime.Now.Day @DateTime.Now.ToString("MMMM")</h3>
     <div class="row">
         <div class="col-md-4">
@@ -18,10 +19,15 @@
                 <tbody>
 
 
+
                     @foreach (var item in Model) {
+
+                    string time = item.Eetmoment.Value.ToString("HH:mm:ss");
+
+                    if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Eetmoment)
+                            @Html.DisplayFor(modelItem => time)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.GerechtRefId)
@@ -30,23 +36,8 @@
                             @Html.DisplayFor(modelItem => item.voldaan)
                         </td>
                     </tr>
-                    }
+                    }}
 
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
-                    </tr>
-                    <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
-                    </tr>
-                    <tr>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>twitter</td>
-                    </tr>
                 </tbody>
             </table>
             <label>Voedingsstof1</label>

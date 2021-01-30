@@ -18,6 +18,7 @@ namespace schema_app.Controllers
         private UserDbContext db = new UserDbContext();
         private string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
 
+
         public ActionResult Index()
         {
             return View(db.MaaltijdUsers.ToList());
@@ -25,8 +26,10 @@ namespace schema_app.Controllers
 
         public ActionResult Vandaag()
         {
-            /*  return View(db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId));*/
-            return View(db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId));
+           
+            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId);
+
+            return View(maaltijdUsers.ToList());
         }
 
         public ActionResult Week()
