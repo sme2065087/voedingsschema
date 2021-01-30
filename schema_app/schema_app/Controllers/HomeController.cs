@@ -26,7 +26,7 @@ namespace schema_app.Controllers
         public ActionResult Vandaag()
         {
             /*  return View(db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId));*/
-            return View(db.MaaltijdUsers.ToList());
+            return View(db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId));
         }
 
         public ActionResult Week()
