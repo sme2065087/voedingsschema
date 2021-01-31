@@ -27,7 +27,6 @@
     {
         <div class="btn-group">
             <a href="/Home/Vandaag" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Home/Vandaag") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Vandaag</a>
-            <a href="/Home/Week" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Home/Week") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Deze week</a>
         </div>}
     <div class="container body-content">
         @RenderBody()

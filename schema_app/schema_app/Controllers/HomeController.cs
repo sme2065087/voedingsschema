@@ -38,12 +38,6 @@ namespace schema_app.Controllers
             return View(maaltijdUsers.ToList());
         }
 
-        [Authorize]
-        public ActionResult Week()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult CheckBoxUpdate(string ID, string Checked)
         {
