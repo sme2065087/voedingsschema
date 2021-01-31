@@ -17,16 +17,17 @@
                 <li class="nav-item @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Home") == true || HttpContext.Current.Request.Url.AbsolutePath == "/"){<text>active</text>}">
                     <a class="nav-link" href="/">Startpagina</a>
                 </li>
-                <li class="nav-item @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Configuratie") == true){<text>active</text>}">
-                    <a class="nav-link" href="/Configuratie">Configuratie</a>
+                <li class="nav-item @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/MaaltijdUsers") == true || HttpContext.Current.Request.Url.AbsolutePath.Contains("/Gerechten") == true){<text>active</text>}">
+                    <a class="nav-link" href="/MaaltijdUsers">Maaltijden</a>
                 </li>
             </ul>
         </div>
     </nav>
-    @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Home") == true || HttpContext.Current.Request.Url.AbsolutePath == "/")
+    @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/MaaltijdUsers") == true || HttpContext.Current.Request.Url.AbsolutePath.Contains("/Gerechten") == true)
     {
         <div class="btn-group">
-            <a href="/Home/Vandaag" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Home/Vandaag") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Vandaag</a>
+            <a href="/MaaltijdUsers" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/MaaltijdUsers") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Maaltijden</a>
+            <a href="/Gerechten" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Gerechten") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Gerechten</a>
         </div>}
     <div class="container body-content">
         @RenderBody()
