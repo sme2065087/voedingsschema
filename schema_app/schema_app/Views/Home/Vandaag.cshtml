@@ -1,54 +1,56 @@
 ﻿@model IEnumerable<schema_app.Models.MaaltijdUser>
-    @using System.Web.UI.WebControls;
-    @{
+@using System.Web.UI.WebControls;
+@{
     ViewBag.Title = "Vandaag";
 
-    }
+}
 
 
-    <h3>@DateTime.Now.ToString("dddd") @DateTime.Now.Day @DateTime.Now.ToString("MMMM")</h3>
-    <div class="row">
-        <div class="col-md-4">
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Tijd</th>
-                        <th scope="col">Maaltijd</th>
-                        <th scope="col">Voldaan</th>
-                    </tr>
-                </thead>
-                <tbody>
+<h3>@DateTime.Now.ToString("dddd") @DateTime.Now.Day @DateTime.Now.ToString("MMMM")</h3>
+<div class="row">
+    <div class="col-md-4">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Tijd</th>
+                    <th scope="col">Maaltijd</th>
+                    <th scope="col">Voldaan</th>
+                </tr>
+            </thead>
+            <tbody>
 
-                    @foreach (var item in Model) {
+                @foreach (var item in Model)
+                {
 
                     string time = item.Eetmoment.Value.ToString("HH:mm:ss");
 
-                    if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => time)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gerecht.Naam)
-                        </td>
-                        <td>
-                            <form method="post" action="@Url.Action("CheckBoxUpdate", "Home" )">
-                                <input id="@item.Id" type="checkbox"
-                                       @if(item.voldaan==true) {<text>checked</text>} aria-label="Checkbox for following text input" onClick="update(@item.Id)" name="placeHolder">
-                                <input hidden name="ID" value="@item.Id" />
-                                <input hidden id="Checked" name="checked" value="" />
-                                <input hidden type="submit" />
-                            </form>
+                    if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => time)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gerecht.Naam)
+                            </td>
+                            <td>
+                                <form method="post" action="@Url.Action("CheckBoxUpdate", "Home" )">
+                                    <input id="@item.Id" type="checkbox"
+                                           @if (item.voldaan == true) { <text> checked</text>} aria-label="Checkbox for following text input" onClick="update(@item.Id)" name="placeHolder">
+                                    <input hidden name="ID" value="@item.Id" />
+                                    <input hidden id="Checked" name="checked" value="" />
+                                    <input hidden type="submit" />
+                                </form>
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
                     }
-                    }
+                }
 
-                </tbody>
-            </table>
-            @{
+            </tbody>
+        </table>
+        @{
             int totalKoolhydraten = 0;
             int DagelijksdoelTotal = 0;
             int DagelijksdoelEaten = 0;
@@ -56,204 +58,236 @@
             int totalEaten = 0;
             string eatenPercentage = "0%";
 
-            foreach (var item in Model) {
-            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-            totalKoolhydraten += item.Gerecht.koolhydraten;
+            foreach (var item in Model)
+            {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                {
+                    totalKoolhydraten += item.Gerecht.koolhydraten;
+                }
             }
-            }
 
-            if (totalKoolhydraten != 0) {
-            <label>Koolhydraten</label>
-            <div class="progress">
+            if (totalKoolhydraten != 0)
+            {
+                <label>Koolhydraten</label>
+                <div class="progress">
 
-                @{
+                    @{
 
 
-                foreach (var item in Model) {
-                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
+                        foreach (var item in Model)
+                        {
+                            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                            {
 
-                total += item.Gerecht.koolhydraten;
+                                total += item.Gerecht.koolhydraten;
 
-                if (item.voldaan == true) {
-                totalEaten += item.Gerecht.koolhydraten;
-                }
-                }
-                }
-                DagelijksdoelTotal += total;
-                DagelijksdoelEaten += totalEaten;
+                                if (item.voldaan == true)
+                                {
+                                    totalEaten += item.Gerecht.koolhydraten;
+                                }
+                            }
+                        }
+                        DagelijksdoelTotal += total;
+                        DagelijksdoelEaten += totalEaten;
 
-                eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
+                        eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
 
-                <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
 
-                }
+                    }
 
-            </div>
+                </div>
             }
 
             int totalSuiker = 0;
 
-            foreach (var item in Model) {
-            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-            totalSuiker += item.Gerecht.Suiker;
-            }}
-
-            if (totalSuiker != 0) {
-            <label>Suiker</label>
-            <div class="progress">
-
-                @{
-
-                total = 0;
-                totalEaten = 0;
-
-                foreach (var item in Model) {
-                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-                total += item.Gerecht.Suiker;
-
-                if (item.voldaan == true) {
-                totalEaten += item.Gerecht.Suiker;
+            foreach (var item in Model)
+            {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                {
+                    totalSuiker += item.Gerecht.Suiker;
                 }
-                }
-                }
-                DagelijksdoelTotal += total;
-                DagelijksdoelEaten += totalEaten;
+            }
 
-                eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
+            if (totalSuiker != 0)
+            {
+                <label>Suiker</label>
+                <div class="progress">
 
-                <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
+                    @{
 
-                }
+                        total = 0;
+                        totalEaten = 0;
 
-            </div>
+                        foreach (var item in Model)
+                        {
+                            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                            {
+                                total += item.Gerecht.Suiker;
+
+                                if (item.voldaan == true)
+                                {
+                                    totalEaten += item.Gerecht.Suiker;
+                                }
+                            }
+                        }
+                        DagelijksdoelTotal += total;
+                        DagelijksdoelEaten += totalEaten;
+
+                        eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
+
+                        <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
+
+                    }
+
+                </div>
             }
 
             int totalVet = 0;
 
-            foreach (var item in Model) {
-            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-            totalVet += item.Gerecht.Vet;
+            foreach (var item in Model)
+            {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                {
+                    totalVet += item.Gerecht.Vet;
+                }
             }
-            }
 
-            if (totalVet != 0) {
-            <label>Vetten</label>
-            <div class="progress">
+            if (totalVet != 0)
+            {
+                <label>Vetten</label>
+                <div class="progress">
 
-                @{
+                    @{
 
-                total = 0;
-                totalEaten = 0;
+                        total = 0;
+                        totalEaten = 0;
 
-                foreach (var item in Model) {
-                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-                total += item.Gerecht.Vet;
+                        foreach (var item in Model)
+                        {
+                            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                            {
+                                total += item.Gerecht.Vet;
 
-                if (item.voldaan == true) {
-                totalEaten += item.Gerecht.Vet;
-                }
-                }
-                }
-                DagelijksdoelTotal += total;
-                DagelijksdoelEaten += totalEaten;
-                eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
-                <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
+                                if (item.voldaan == true)
+                                {
+                                    totalEaten += item.Gerecht.Vet;
+                                }
+                            }
+                        }
+                        DagelijksdoelTotal += total;
+                        DagelijksdoelEaten += totalEaten;
+                        eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
+                        <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
 
-                }
+                    }
 
-            </div>
+                </div>
             }
 
             int totalVerzadigdeVetten = 0;
 
-            foreach (var item in Model) {
-            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-            totalVerzadigdeVetten += item.Gerecht.Verzadigde_vetten;
+            foreach (var item in Model)
+            {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                {
+                    totalVerzadigdeVetten += item.Gerecht.Verzadigde_vetten;
+                }
             }
-            }
 
-            if (totalVerzadigdeVetten != 0) {
-            <label>Verzadigde vetten</label>
-            <div class="progress">
+            if (totalVerzadigdeVetten != 0)
+            {
+                <label>Verzadigde vetten</label>
+                <div class="progress">
 
-                @{
+                    @{
 
-                total = 0;
-                totalEaten = 0;
+                        total = 0;
+                        totalEaten = 0;
 
-                foreach (var item in Model) {
-                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-                total += item.Gerecht.Verzadigde_vetten;
+                        foreach (var item in Model)
+                        {
+                            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                            {
+                                total += item.Gerecht.Verzadigde_vetten;
 
-                if (item.voldaan == true) {
-                totalEaten += item.Gerecht.Verzadigde_vetten;
-                }
-                }
-                }
-                DagelijksdoelTotal += total;
-                DagelijksdoelEaten += totalEaten;
-                eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
-                <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
+                                if (item.voldaan == true)
+                                {
+                                    totalEaten += item.Gerecht.Verzadigde_vetten;
+                                }
+                            }
+                        }
+                        DagelijksdoelTotal += total;
+                        DagelijksdoelEaten += totalEaten;
+                        eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
+                        <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
 
-                }
+                    }
 
-            </div>
+                </div>
             }
 
             int totalEiwitten = 0;
 
-            foreach (var item in Model) {
-            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-            totalEiwitten += item.Gerecht.eiwit;
-            }
-            }
-
-            if (totalEiwitten != 0) {
-            <label>Eiwitten</label>
-            <div class="progress">
-
-                @{
-
-                total = 0;
-                totalEaten = 0;
-
-                foreach (var item in Model) {
-                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
-                total += item.Gerecht.eiwit;
-
-                if (item.voldaan == true) {
-                totalEaten += item.Gerecht.eiwit;
+            foreach (var item in Model)
+            {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                {
+                    totalEiwitten += item.Gerecht.eiwit;
                 }
-                }
-                }
-                DagelijksdoelTotal += total;
-                DagelijksdoelEaten += totalEaten;
-                eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
-                <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
-
-                }
-
-            </div>
             }
 
-            if (totalKoolhydraten != 0 && totalSuiker != 0 && totalVet != 0 && totalKoolhydraten != 0 && totalVerzadigdeVetten != 0 && totalEiwitten != 0) {
-            <br />
-            <label>Dagelijks doel</label>
-            <div class="progress">
+            if (totalEiwitten != 0)
+            {
+                <label>Eiwitten</label>
+                <div class="progress">
 
-                @{
-                eatenPercentage = ((DagelijksdoelEaten * 100) / DagelijksdoelTotal).ToString() + "%";
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: @eatenPercentage " aria-valuenow="@DagelijksdoelEaten " aria-valuemin="0" aria-valuemax="100"></div>
+                    @{
 
-                }
+                        total = 0;
+                        totalEaten = 0;
 
-            </div>
+                        foreach (var item in Model)
+                        {
+                            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                            {
+                                total += item.Gerecht.eiwit;
+
+                                if (item.voldaan == true)
+                                {
+                                    totalEaten += item.Gerecht.eiwit;
+                                }
+                            }
+                        }
+                        DagelijksdoelTotal += total;
+                        DagelijksdoelEaten += totalEaten;
+                        eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
+                        <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
+
+                    }
+
+                </div>
             }
+
+            if (totalKoolhydraten != 0 && totalSuiker != 0 && totalVet != 0 && totalKoolhydraten != 0 && totalVerzadigdeVetten != 0 && totalEiwitten != 0)
+            {
+                <br />
+                <label>Dagelijks doel</label>
+                <div class="progress">
+
+                    @{
+                        eatenPercentage = ((DagelijksdoelEaten * 100) / DagelijksdoelTotal).ToString() + "%";
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: @eatenPercentage " aria-valuenow="@DagelijksdoelEaten " aria-valuemin="0" aria-valuemax="100"></div>
+
+                    }
+
+                </div>
             }
-        </div>
+        }
     </div>
+</div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
         function update(data) {
 
@@ -270,4 +304,4 @@
 
         };
 
-    </script>
+</script>
