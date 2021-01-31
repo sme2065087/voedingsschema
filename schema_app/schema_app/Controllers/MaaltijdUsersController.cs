@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using schema_app.Models;
+using Microsoft.AspNet.Identity;
 
 namespace schema_app.Controllers
 {
@@ -14,12 +15,13 @@ namespace schema_app.Controllers
     public class MaaltijdUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
 
         // GET: MaaltijdUsers
         [Authorize]
         public ActionResult Index()
         {
-            var maaltijdUsers = db.MaaltijdUsers.Include(m => m.Client).Include(m => m.Gerecht);
+            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.ClientId == userId).Include(m => m.Client).Include(m => m.Gerecht);
             return View(maaltijdUsers.ToList());
         }
 
