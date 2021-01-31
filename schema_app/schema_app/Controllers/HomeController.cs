@@ -26,7 +26,7 @@ namespace schema_app.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.MaaltijdUsers.ToList());
+            return Redirect("/Home/Vandaag");
         }
 
         [Authorize]
