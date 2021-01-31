@@ -138,5 +138,21 @@ namespace schema_app.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult CheckBoxUpdate(string ID, string Checked)
+        {
+
+            var dbCommand = "UPDATE MaaltijdUsers SET voldaan='True' WHERE Id='" + ID + "'";
+            System.Diagnostics.Debug.WriteLine("My debug string here");
+            if (Checked == "false" || Checked == "False")
+            {
+                dbCommand = "UPDATE MaaltijdUsers SET voldaan='False' WHERE Id='" + ID + "'";
+            }
+
+            db.Database.ExecuteSqlCommand(dbCommand);
+
+            return Redirect("/MaaltijdUsers");
+        }
     }
 }
