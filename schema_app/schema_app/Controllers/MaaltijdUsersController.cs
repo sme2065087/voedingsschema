@@ -16,6 +16,7 @@ namespace schema_app.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+        
 
         // GET: MaaltijdUsers
         [Authorize]
@@ -57,6 +58,9 @@ namespace schema_app.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ClientId,Eetmoment,GerechtRefId,voldaan")] MaaltijdUser maaltijdUser)
         {
+
+            maaltijdUser.ClientId = userId;
+
             if (ModelState.IsValid)
             {
                 db.MaaltijdUsers.Add(maaltijdUser);

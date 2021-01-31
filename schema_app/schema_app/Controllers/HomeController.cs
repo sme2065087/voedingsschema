@@ -33,7 +33,7 @@ namespace schema_app.Controllers
         public ActionResult Vandaag()
         {
            
-            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.Client.Id == userId).Include(p => p.Gerecht);
+            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.ClientId == userId).Include(p => p.Gerecht);
 
             return View(maaltijdUsers.ToList());
         }

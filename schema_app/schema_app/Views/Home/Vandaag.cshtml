@@ -57,7 +57,9 @@
             string eatenPercentage = "0%";
 
             foreach (var item in Model) {
+            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
             totalKoolhydraten += item.Gerecht.koolhydraten;
+            }
             }
 
             if (totalKoolhydraten != 0) {
@@ -68,10 +70,13 @@
 
 
                 foreach (var item in Model) {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
+
                 total += item.Gerecht.koolhydraten;
 
                 if (item.voldaan == true) {
                 totalEaten += item.Gerecht.koolhydraten;
+                }
                 }
                 }
                 DagelijksdoelTotal += total;
@@ -85,12 +90,13 @@
 
             </div>
             }
-            
+
             int totalSuiker = 0;
 
             foreach (var item in Model) {
+            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
             totalSuiker += item.Gerecht.Suiker;
-            }
+            }}
 
             if (totalSuiker != 0) {
             <label>Suiker</label>
@@ -102,10 +108,12 @@
                 totalEaten = 0;
 
                 foreach (var item in Model) {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
                 total += item.Gerecht.Suiker;
 
                 if (item.voldaan == true) {
                 totalEaten += item.Gerecht.Suiker;
+                }
                 }
                 }
                 DagelijksdoelTotal += total;
@@ -119,11 +127,13 @@
 
             </div>
             }
-            
+
             int totalVet = 0;
 
             foreach (var item in Model) {
+            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
             totalVet += item.Gerecht.Vet;
+            }
             }
 
             if (totalVet != 0) {
@@ -136,10 +146,12 @@
                 totalEaten = 0;
 
                 foreach (var item in Model) {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
                 total += item.Gerecht.Vet;
 
                 if (item.voldaan == true) {
                 totalEaten += item.Gerecht.Vet;
+                }
                 }
                 }
                 DagelijksdoelTotal += total;
@@ -151,11 +163,13 @@
 
             </div>
             }
-            
+
             int totalVerzadigdeVetten = 0;
 
             foreach (var item in Model) {
+            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
             totalVerzadigdeVetten += item.Gerecht.Verzadigde_vetten;
+            }
             }
 
             if (totalVerzadigdeVetten != 0) {
@@ -168,10 +182,12 @@
                 totalEaten = 0;
 
                 foreach (var item in Model) {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
                 total += item.Gerecht.Verzadigde_vetten;
 
                 if (item.voldaan == true) {
                 totalEaten += item.Gerecht.Verzadigde_vetten;
+                }
                 }
                 }
                 DagelijksdoelTotal += total;
@@ -183,11 +199,13 @@
 
             </div>
             }
-          
+
             int totalEiwitten = 0;
 
             foreach (var item in Model) {
+            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
             totalEiwitten += item.Gerecht.eiwit;
+            }
             }
 
             if (totalEiwitten != 0) {
@@ -200,10 +218,12 @@
                 totalEaten = 0;
 
                 foreach (var item in Model) {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy")) {
                 total += item.Gerecht.eiwit;
 
                 if (item.voldaan == true) {
                 totalEaten += item.Gerecht.eiwit;
+                }
                 }
                 }
                 DagelijksdoelTotal += total;
