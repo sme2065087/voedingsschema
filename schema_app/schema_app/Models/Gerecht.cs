@@ -23,11 +23,11 @@ namespace schema_app.Models
         }
     }
 
-    public class GerechtDb : DbContext
-    {
-        public DbSet<Gerecht> Gerechten { get; set; }
-        public GerechtDb() : base("DefaultConnection")
-        {
-        }
-    }
+    //public class GerechtDb : DbContext
+    //{
+    //    public DbSet<Gerecht> Gerechten { get; set; }
+    //    public GerechtDb() : base("DefaultConnection")
+    //    {
+    //    }
+    //}
 }

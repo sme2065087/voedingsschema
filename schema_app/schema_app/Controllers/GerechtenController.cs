@@ -12,7 +12,7 @@ namespace schema_app.Controllers
 {
     public class GerechtenController : Controller
     {
-        private GerechtDb db = new GerechtDb();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Gerechten
         public ActionResult Index()

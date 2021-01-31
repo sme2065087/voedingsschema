@@ -174,40 +174,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\MaaltijdUsersController.cs" />
-    <Compile Include="Migrations\GerechtDb\202101292253001_Foreign key update.cs" />
-    <Compile Include="Migrations\GerechtDb\202101292253001_Foreign key update.Designer.cs">
-      <DependentUpon>202101292253001_Foreign key update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\202101291929527_initialMigrate.cs" />
-    <Compile Include="Migrations\UserDbContext\202101291929527_initialMigrate.Designer.cs">
-      <DependentUpon>202101291929527_initialMigrate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\202101292114394_UpdateTijdNaam.cs" />
-    <Compile Include="Migrations\UserDbContext\202101292114394_UpdateTijdNaam.Designer.cs">
-      <DependentUpon>202101292114394_UpdateTijdNaam.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\202101301237486_changeIdType.cs" />
-    <Compile Include="Migrations\UserDbContext\202101301237486_changeIdType.Designer.cs">
-      <DependentUpon>202101301237486_changeIdType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\202101301300026_RelationUpdate.cs" />
-    <Compile Include="Migrations\UserDbContext\202101301300026_RelationUpdate.Designer.cs">
-      <DependentUpon>202101301300026_RelationUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\202101301315462_UserEnGerechtRelationNameUpdate.cs" />
-    <Compile Include="Migrations\UserDbContext\202101301315462_UserEnGerechtRelationNameUpdate.Designer.cs">
-      <DependentUpon>202101301315462_UserEnGerechtRelationNameUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\202101301324509_UndoUserEnGerechtRelationNameUpdate.cs" />
-    <Compile Include="Migrations\UserDbContext\202101301324509_UndoUserEnGerechtRelationNameUpdate.Designer.cs">
-      <DependentUpon>202101301324509_UndoUserEnGerechtRelationNameUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\202101301338107_HopefullyFixedUserEnGerechtRelationNameUpdate.cs" />
-    <Compile Include="Migrations\UserDbContext\202101301338107_HopefullyFixedUserEnGerechtRelationNameUpdate.Designer.cs">
-      <DependentUpon>202101301338107_HopefullyFixedUserEnGerechtRelationNameUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserDbContext\Configuration.cs" />
-    <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GerechtenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -215,16 +181,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\202101281744213_initializeUserDatabase.cs" />
-    <Compile Include="Migrations\ApplicationDbContext\202101281744213_initializeUserDatabase.Designer.cs">
-      <DependentUpon>202101281744213_initializeUserDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202101310221276_DatabaseCreationXX.cs" />
+    <Compile Include="Migrations\202101310221276_DatabaseCreationXX.Designer.cs">
+      <DependentUpon>202101310221276_DatabaseCreationXX.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
-    <Compile Include="Migrations\GerechtDb\202101281740222_initializeGerechtTable.cs" />
-    <Compile Include="Migrations\GerechtDb\202101281740222_initializeGerechtTable.Designer.cs">
-      <DependentUpon>202101281740222_initializeGerechtTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\GerechtDb\Configuration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Gerecht.cs" />
@@ -418,35 +379,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ApplicationDbContext\202101281744213_initializeUserDatabase.resx">
-      <DependentUpon>202101281744213_initializeUserDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\GerechtDb\202101281740222_initializeGerechtTable.resx">
-      <DependentUpon>202101281740222_initializeGerechtTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\GerechtDb\202101292253001_Foreign key update.resx">
-      <DependentUpon>202101292253001_Foreign key update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserDbContext\202101291929527_initialMigrate.resx">
-      <DependentUpon>202101291929527_initialMigrate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserDbContext\202101292114394_UpdateTijdNaam.resx">
-      <DependentUpon>202101292114394_UpdateTijdNaam.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserDbContext\202101301237486_changeIdType.resx">
-      <DependentUpon>202101301237486_changeIdType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserDbContext\202101301300026_RelationUpdate.resx">
-      <DependentUpon>202101301300026_RelationUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserDbContext\202101301315462_UserEnGerechtRelationNameUpdate.resx">
-      <DependentUpon>202101301315462_UserEnGerechtRelationNameUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserDbContext\202101301324509_UndoUserEnGerechtRelationNameUpdate.resx">
-      <DependentUpon>202101301324509_UndoUserEnGerechtRelationNameUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserDbContext\202101301338107_HopefullyFixedUserEnGerechtRelationNameUpdate.resx">
-      <DependentUpon>202101301338107_HopefullyFixedUserEnGerechtRelationNameUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101310221276_DatabaseCreationXX.resx">
+      <DependentUpon>202101310221276_DatabaseCreationXX.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

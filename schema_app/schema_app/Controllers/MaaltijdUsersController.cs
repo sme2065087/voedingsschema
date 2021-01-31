@@ -12,12 +12,12 @@ namespace schema_app.Controllers
 {
     public class MaaltijdUsersController : Controller
     {
-        private UserDbContext db = new UserDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: MaaltijdUsers
         public ActionResult Index()
         {
-            var maaltijdUsers = db.MaaltijdUsers.Include(m => m.AspNetUser).Include(m => m.Gerecht);
+            var maaltijdUsers = db.MaaltijdUsers.Include(m => m.Client).Include(m => m.Gerecht);
             return View(maaltijdUsers.ToList());
         }
 
@@ -39,8 +39,8 @@ namespace schema_app.Controllers
         // GET: MaaltijdUsers/Create
         public ActionResult Create()
         {
-            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam");
+            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam");
             return View();
         }
 
@@ -58,8 +58,8 @@ namespace schema_app.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email", maaltijdUser.AspNetUserRefId);
-            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam", maaltijdUser.GerechtRefId);
+            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
+            ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
 
@@ -75,8 +75,8 @@ namespace schema_app.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email", maaltijdUser.AspNetUserRefId);
-            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam", maaltijdUser.GerechtRefId);
+            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
+            ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
 
@@ -93,8 +93,8 @@ namespace schema_app.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AspNetUserRefId = new SelectList(db.AspNetUsers, "Id", "Email", maaltijdUser.AspNetUserRefId);
-            ViewBag.GerechtRefId = new SelectList(db.Gerechts, "Id", "Naam", maaltijdUser.GerechtRefId);
+            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
+            ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
 

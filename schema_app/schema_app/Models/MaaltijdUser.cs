@@ -13,10 +13,8 @@ namespace schema_app.Models
         public int Id { get; set; }
 
 
-        public string AspNetUserRefId { get; set; }
-
-        [ForeignKey("AspNetUserRefId")]
-        public AspNetUser AspNetUser { get; set; }
+        public string ClientId { get; set; }
+        public ApplicationUser Client { get; set; }
 
         public DateTime? Eetmoment { get; set; }
 
@@ -32,15 +30,15 @@ namespace schema_app.Models
         }
     }
 
-    public class UserDbContext : DbContext
-    {
-        public DbSet<MaaltijdUser> MaaltijdUsers { get; set; }
-        public UserDbContext() : base("DefaultConnection")
-        {
-        }
+    //public class UserDbContext : DbContext
+    //{
+    //    public DbSet<MaaltijdUser> MaaltijdUsers { get; set; }
+    //    public UserDbContext() : base("DefaultConnection")
+    //    {
+    //    }
 
-        public System.Data.Entity.DbSet<schema_app.Models.AspNetUser> AspNetUsers { get; set; }
+    //    public System.Data.Entity.DbSet<schema_app.Models.AspNetUser> AspNetUsers { get; set; }
 
-        public System.Data.Entity.DbSet<schema_app.Models.Gerecht> Gerechts { get; set; }
-    }
+    //    public System.Data.Entity.DbSet<schema_app.Models.Gerecht> Gerechts { get; set; }
+    //}
 }

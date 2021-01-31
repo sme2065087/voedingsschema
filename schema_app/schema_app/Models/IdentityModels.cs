@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -16,6 +17,7 @@ namespace schema_app.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public virtual ICollection<MaaltijdUser> MaaltijdUsers { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -24,6 +26,9 @@ namespace schema_app.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Gerecht> Gerechten { get; set; }
+        public DbSet<MaaltijdUser> MaaltijdUsers { get; set; }
+        //public DbSet<ApplicationUser> AspNetUsers { get; set; }
 
         public static ApplicationDbContext Create()
         {

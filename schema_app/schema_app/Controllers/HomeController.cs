@@ -15,7 +15,7 @@ namespace schema_app.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private UserDbContext db = new UserDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         private string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
 
 
@@ -27,7 +27,7 @@ namespace schema_app.Controllers
         public ActionResult Vandaag()
         {
            
-            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.AspNetUser.Id == userId).Include(p => p.Gerecht);
+            var maaltijdUsers = db.MaaltijdUsers.Where(u => u.Client.Id == userId).Include(p => p.Gerecht);
 
             return View(maaltijdUsers.ToList());
         }
