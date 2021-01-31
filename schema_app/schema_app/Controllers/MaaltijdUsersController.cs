@@ -10,11 +10,13 @@ using schema_app.Models;
 
 namespace schema_app.Controllers
 {
+    [Authorize]
     public class MaaltijdUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: MaaltijdUsers
+        [Authorize]
         public ActionResult Index()
         {
             var maaltijdUsers = db.MaaltijdUsers.Include(m => m.Client).Include(m => m.Gerecht);
@@ -22,6 +24,7 @@ namespace schema_app.Controllers
         }
 
         // GET: MaaltijdUsers/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,9 +40,10 @@ namespace schema_app.Controllers
         }
 
         // GET: MaaltijdUsers/Create
+        [Authorize]
         public ActionResult Create()
         {
-            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.ClientId = new SelectList(db.Users, "Id", "Email");
             ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam");
             return View();
         }
@@ -49,7 +53,7 @@ namespace schema_app.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AspNetUserRefId,Eetmoment,GerechtRefId,voldaan")] MaaltijdUser maaltijdUser)
+        public ActionResult Create([Bind(Include = "Id,ClientId,Eetmoment,GerechtRefId,voldaan")] MaaltijdUser maaltijdUser)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +62,7 @@ namespace schema_app.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
+            ViewBag.ClientId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
             ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
@@ -75,7 +79,7 @@ namespace schema_app.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
+            ViewBag.ClientId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
             ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
@@ -85,7 +89,7 @@ namespace schema_app.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,AspNetUserRefId,Eetmoment,GerechtRefId,voldaan")] MaaltijdUser maaltijdUser)
+        public ActionResult Edit([Bind(Include = "Id,ClientId,Eetmoment,GerechtRefId,voldaan")] MaaltijdUser maaltijdUser)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +97,7 @@ namespace schema_app.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AspNetUserRefId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
+            ViewBag.ClientId = new SelectList(db.Users, "Id", "Email", maaltijdUser.ClientId);
             ViewBag.GerechtRefId = new SelectList(db.Gerechten, "Id", "Naam", maaltijdUser.GerechtRefId);
             return View(maaltijdUser);
         }
