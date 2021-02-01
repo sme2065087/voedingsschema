@@ -3,15 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - iCapture Voedingsschema</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
-
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Home") == true || HttpContext.Current.Request.Url.AbsolutePath == "/"){<text>active</text>}">
@@ -25,15 +23,17 @@
     </nav>
     @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/MaaltijdUsers") == true || HttpContext.Current.Request.Url.AbsolutePath.Contains("/Gerechten") == true)
     {
-        <div class="btn-group">
-            <a href="/MaaltijdUsers" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/MaaltijdUsers") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Maaltijden</a>
-            <a href="/Gerechten" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Gerechten") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Gerechten</a>
-        </div>}
+<div class="container">
+    <div class="btn-group">
+        <a href="/MaaltijdUsers" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/MaaltijdUsers") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Maaltijden</a>
+        <a href="/Gerechten" class="btn @if (HttpContext.Current.Request.Url.AbsolutePath.Contains("/Gerechten") == true) { <text>btn-primary</text>} else {  <text>btn-default</text> } ">Gerechten</a>
+    </div>
+</div>}
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - iCapture Voedingsschema</p>
         </footer>
     </div>
 

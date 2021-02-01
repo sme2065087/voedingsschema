@@ -51,12 +51,56 @@
             </tbody>
         </table>
         @{
-            int totalKoolhydraten = 0;
+            int totalKcal = 0;
             int DagelijksdoelTotal = 0;
             int DagelijksdoelEaten = 0;
             int total = 0;
             int totalEaten = 0;
             string eatenPercentage = "0%";
+
+            foreach (var item in Model)
+            {
+                if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                {
+                    totalKcal += item.Gerecht.Kcal;
+                }
+            }
+
+            if (totalKcal != 0)
+            {
+                <label>Kcal</label>
+                <div class="progress">
+
+                    @{
+
+
+                        foreach (var item in Model)
+                        {
+                            if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
+                            {
+
+                                total += item.Gerecht.Kcal;
+
+                                if (item.voldaan == true)
+                                {
+                                    totalEaten += item.Gerecht.Kcal;
+                                }
+                            }
+                        }
+                        DagelijksdoelTotal += total;
+                        DagelijksdoelEaten += totalEaten;
+
+                        eatenPercentage = ((totalEaten * 100) / total).ToString() + "%";
+
+                        <div class="progress-bar " role="progressbar" style="width: @eatenPercentage " aria-valuenow="@totalEaten " aria-valuemin="0" aria-valuemax="100"></div>
+
+                    }
+
+                </div>
+            }
+
+
+            int totalKoolhydraten = 0;
 
             foreach (var item in Model)
             {
@@ -73,12 +117,13 @@
 
                     @{
 
+                        total = 0;
+                        totalEaten = 0;
 
                         foreach (var item in Model)
                         {
                             if (DateTime.Now.ToString("M-d-yyyy") == item.Eetmoment.Value.ToString("M-d-yyyy"))
                             {
-
                                 total += item.Gerecht.koolhydraten;
 
                                 if (item.voldaan == true)
@@ -98,6 +143,12 @@
 
                 </div>
             }
+
+
+
+
+
+
 
             int totalSuiker = 0;
 
@@ -269,7 +320,7 @@
                 </div>
             }
 
-            if (totalKoolhydraten != 0 && totalSuiker != 0 && totalVet != 0 && totalKoolhydraten != 0 && totalVerzadigdeVetten != 0 && totalEiwitten != 0)
+            if (totalKcal != 0 && totalKoolhydraten != 0 && totalSuiker != 0 && totalVet != 0 && totalKoolhydraten != 0 && totalVerzadigdeVetten != 0 && totalEiwitten != 0)
             {
                 <br />
                 <label>Dagelijks doel</label>
@@ -289,19 +340,19 @@
 
 <script type="text/javascript">
 
-        function update(data) {
+    function update(data) {
 
 
 
-            console.log(Object.getOwnPropertyNames($("#" + data)));
-            if ($("#" + data).closest("input[name = 'placeHolder']").is(":checked") == true) {
-                $("#" + data).parent().children("input[name = 'checked']").val("True");
-            } else if ($("#" + data).closest("input[name = 'placeHolder']").is(":checked") == false) {
-                $("#" + data).parent().children("input[name = 'checked']").val("False");
-            }
+        console.log(Object.getOwnPropertyNames($("#" + data)));
+        if ($("#" + data).closest("input[name = 'placeHolder']").is(":checked") == true) {
+            $("#" + data).parent().children("input[name = 'checked']").val("True");
+        } else if ($("#" + data).closest("input[name = 'placeHolder']").is(":checked") == false) {
+            $("#" + data).parent().children("input[name = 'checked']").val("False");
+        }
 
-            $("#" + data).parent().submit(); // Submit the form
+        $("#" + data).parent().submit(); // Submit the form
 
-        };
+    };
 
 </script>
