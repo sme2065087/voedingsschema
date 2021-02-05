@@ -1,13 +1,18 @@
 ﻿<Properties StartupConfiguration="{5030B6AC-D953-4D7A-B3A8-2666531FE0E1}|">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="schema_app/Migrations/Configuration.cs">
+    <Files>
+      <File FileName="schema_app/Web.config" Line="21" Column="52" />
+      <File FileName="schema_app/Migrations/202101310221276_DatabaseCreationXX.cs" Line="1" Column="1" />
+      <File FileName="schema_app/Migrations/Configuration.cs" Line="26" Column="61" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="schema_app" expanded="True">
             <Node name="schema_app" expanded="True">
-              <Node name="App_Data" selected="True" />
-              <Node name="App_Start" expanded="True" />
-              <Node name="Controllers" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="Configuration.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
